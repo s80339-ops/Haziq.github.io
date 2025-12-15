@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haziq - Soil Science Student Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* 4. Clean, Scientific, and Modern Color Palette */
+            --color-background: #F8F9FA; /* Soft White/Light Grey */
+            --color-card-bg: #FFFFFF;    /* Pure White */
+            --color-text-primary: #212529; /* Near-Black */
+            --color-text-secondary: #6C757D; /* Medium Grey */
+            --color-accent: #004B8D;     /* Updated: Deep Ocean Blue (UMT Theme) */
+            --color-border: #E9ECEF;     /* Very Light Border Grey */
+            --border-radius: 12px;
+            --spacing: 16px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-text-primary);
+            margin: 0;
+            padding: var(--spacing);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* Bento Grid Container */
+        .bento-grid-container {
+            width: 100%;
+            max-width: 1200px; /* Max width for desktop viewing */
+            display: grid;
+            gap: var(--spacing);
+            /* 2. Desktop Grid Layout (3 columns) */
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: auto;
+            align-content: start; /* Align content to the start of the container */
+        }
+
+        /* Universal Card Styling */
+        .card {
+            background-color: var(--color-card-bg);
+            border-radius: var(--border-radius);
+            padding: var(--spacing) calc(var(--spacing) * 1.5);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--color-border);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* --- Desktop Specific Grid Spanning (Desktop/Tablet) --- */
+
+        /* Card 1 (Profile): Large box (2x2) */
+        .card-profile {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        /* Card 3 (Tech Stack): Medium box (2x1) */
+        .card-tech-stack {
+            grid-column: span 2;
+        }
+        
+        /* Card 6 (Playlist): Wide box (3x1) */
+        .card-playlist {
+            grid-column: span 3;
+        }
+
+        /* --- Content Styling --- */
+
+        /* Profile Card Specifics */
+        .card-profile h1 {
+            font-size: 2.5em;
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .card-profile .program {
+            color: var(--color-accent);
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            color: var(--color-text-primary);
+            text-decoration: none;
+            margin-right: 15px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .social-links a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Utility classes for smaller text/titles */
+        .card-title {
+            font-size: 0.9em;
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .card-content h2 {
+            font-size: 1.5em;
+            margin: 0 0 10px 0;
+            font-weight: 600;
+        }
+
+        .card-content p {
+            margin: 0;
+            font-size: 1em;
+            color: var(--color-text-primary);
+        }
+
+        /* Case Study Card */
+        .card-case-study p {
+            color: var(--color-accent);
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        /* Location Card */
+        .card-location .time {
+            /* Placeholder for dynamic time - styled large */
+            font-size: 2.5em;
+            font-weight: 300;
+            margin-top: 5px;
+            color: var(--color-accent);
+        }
+        
+        /* Tech Stack Card (Subjects) */
+        .subject-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .subject-tag {
+            background-color: var(--color-border);
+            color: var(--color-text-secondary);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        /* Playlist Card (Footer) */
+        .card-playlist h2 {
+            color: var(--color-accent);
+        }
+
+        /* --- 2. Mobile Responsiveness (Stacked Vertically) --- */
+
+        @media (max-width: 768px) {
+            .bento-grid-container {
+                /* Stacked Vertically */
+                grid-template-columns: 1fr;
+            }
+
+            /* Resetting all desktop spans to stack on mobile */
+            .card-profile,
+            .card-tech-stack,
+            .card-playlist {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+            
+            /* Adjustments for smaller screen look */
+            .card-profile h1 {
+                font-size: 2em;
+            }
+
+            .card-location .time {
+                font-size: 2em;
+            }
+            
+            .card-content h2 {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bento-grid-container">
+
+        <div class="card card-profile">
+            <div>
+                <h1>Haziq</h1>
+                <p class="program">Soil Science, Year 1</p>
+                <p>Welcome to my student dashboard. Currently focusing on analytical techniques and microbial safety in the food industry. </p>
+                <p><strong>Tagline:</strong> 'plants for all.'</p>
+            </div>
+            <div class="social-links">
+                <a href="#">LinkedIn</a>
+                <a href="#">GitHub</a>
+                <a href="#">UMT Portal</a>
+            </div>
+        </div>
+
+        <div class="card card-location">
+            <div>
+                <div class="card-title">Current Location</div>
+                <div class="card-content">
+                    <h2>UMT, Kuala Nerus</h2>
+                    <div class="time">10:46 AM</div> 
+                </div>
+            </div>
+        </div>
+        
+        <div class="card card-hobby">
+            <div>
+                <div class="card-title">Hobby</div>
+                <div class="card-content">
+                    <h2>Coastal Relaxation</h2>
+                    <p>Evening walks at Pantai UMT.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card card-tech-stack">
+            <div class="card-title">Core Subjects / Stack</div>
+            <div class="card-content">
+                <h2>Current Focus Areas</h2>
+                <div class="subject-list">
+                    <span class="subject-tag">Basic Soil</span>
+                    <span class="subject-tag">Soil Science</span>
+                    <span class="subject-tag">Excel</span>
+                    <span class="subject-tag">Lab Analysis</span>
+                    <span class="subject-tag">Research Methods</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card card-case-study">
+            <div class="card-title">Recent Lab Work</div>
+            <div class="card-content">
+                <h2>Soil Horizon</h2>
+                <p>Analyzing texture profiles of Soil — View Report</p>
+            </div>
+        </div>
+
+        <div class="card card-playlist">
+            <div class="card-title">Study Focus</div>
+            <div class="card-content">
+                <h2>Lofi Beats for Deep Work</h2>
+                <p>Placeholder for Embedded Music Player / Spotify Widget.</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
