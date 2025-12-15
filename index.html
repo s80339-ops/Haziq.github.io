@@ -9,12 +9,12 @@
     <style>
         :root {
             /* 4. Clean, Scientific, and Modern Color Palette */
-            --color-background: #F8F9FA; /* Soft White/Light Grey */
-            --color-card-bg: #FFFFFF;    /* Pure White */
-            --color-text-primary: #212529; /* Near-Black */
-            --color-text-secondary: #6C757D; /* Medium Grey */
-            --color-accent: #004B8D;     /* Updated: Deep Ocean Blue (UMT Theme) */
-            --color-border: #E9ECEF;     /* Very Light Border Grey */
+            --color-background: #F8F9FA;
+            --color-card-bg: #FFFFFF;
+            --color-text-primary: #212529;
+            --color-text-secondary: #6C757D;
+            --color-accent: #004B8D;     /* Deep Ocean Blue (UMT Theme) */
+            --color-border: #E9ECEF;
             --border-radius: 12px;
             --spacing: 16px;
         }
@@ -34,13 +34,12 @@
         /* Bento Grid Container */
         .bento-grid-container {
             width: 100%;
-            max-width: 1200px; /* Max width for desktop viewing */
+            max-width: 1200px;
             display: grid;
             gap: var(--spacing);
-            /* 2. Desktop Grid Layout (3 columns) */
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: auto;
-            align-content: start; /* Align content to the start of the container */
+            align-content: start;
         }
 
         /* Universal Card Styling */
@@ -53,29 +52,69 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            position: relative; /* Penting untuk overlay dan z-index */
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
         }
 
-        /* --- Desktop Specific Grid Spanning (Desktop/Tablet) --- */
+        /* Subtle Hover Effect */
+        .card:hover {
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+        }
 
-        /* Card 1 (Profile): Large box (2x2) */
+        /* --- Grid Spanning --- */
         .card-profile {
             grid-column: span 2;
             grid-row: span 2;
+            /* Latar Belakang Gambar Profil */
+            background-image: url('bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white; /* Default text color in this card */
+            overflow: hidden; /* Penting untuk overlay */
         }
-
-        /* Card 3 (Tech Stack): Medium box (2x1) */
+        
         .card-tech-stack {
             grid-column: span 2;
         }
         
-        /* Card 6 (Playlist): Wide box (3x1) */
+        /* Playlist Card Specific: Remove padding to let the iframe fill the space */
         .card-playlist {
             grid-column: span 3;
+            padding: 0; /* Remove internal padding to contain the full iframe */
+            overflow: hidden; /* Ensure iframe corners match card border radius */
+        }
+        
+        .card-playlist iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
         }
 
         /* --- Content Styling --- */
 
-        /* Profile Card Specifics */
+        /* Profile Card Overlay for Contrast */
+        .card-profile::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4); /* Black overlay 40% opacity */
+            border-radius: var(--border-radius);
+            z-index: 1; 
+        }
+
+        /* Ensure all text content is above the overlay */
+        .card-profile > div {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Text styling for Profile Card (Light colors) */
         .card-profile h1 {
             font-size: 2.5em;
             margin-top: 0;
@@ -84,25 +123,25 @@
         }
 
         .card-profile .program {
-            color: var(--color-accent);
+            color: #ccc; /* Light gray for contrast */
             font-weight: 600;
             font-size: 1.1em;
             margin-bottom: 20px;
         }
-
-        .social-links a {
-            color: var(--color-text-primary);
+        
+        .card-profile .social-links a {
+            color: #fff; /* White for links */
             text-decoration: none;
             margin-right: 15px;
             font-weight: 500;
             transition: color 0.2s;
         }
-        
-        .social-links a:hover {
-            color: var(--color-accent);
+
+        .card-profile .social-links a:hover {
+            color: #00bfff; /* Lighter blue accent on hover */
         }
 
-        /* Utility classes for smaller text/titles */
+        /* Standard Card Styling (for non-profile cards) */
         .card-title {
             font-size: 0.9em;
             color: var(--color-text-secondary);
@@ -117,30 +156,26 @@
             margin: 0 0 10px 0;
             font-weight: 600;
         }
-
+        
         .card-content p {
             margin: 0;
             font-size: 1em;
             color: var(--color-text-primary);
         }
 
-        /* Case Study Card */
         .card-case-study p {
             color: var(--color-accent);
             font-weight: 600;
             font-size: 1.1em;
         }
 
-        /* Location Card */
         .card-location .time {
-            /* Placeholder for dynamic time - styled large */
             font-size: 2.5em;
             font-weight: 300;
             margin-top: 5px;
             color: var(--color-accent);
         }
         
-        /* Tech Stack Card (Subjects) */
         .subject-list {
             display: flex;
             flex-wrap: wrap;
@@ -156,20 +191,13 @@
             font-weight: 500;
         }
 
-        /* Playlist Card (Footer) */
-        .card-playlist h2 {
-            color: var(--color-accent);
-        }
-
-        /* --- 2. Mobile Responsiveness (Stacked Vertically) --- */
+        /* --- Mobile Responsiveness (Stacked Vertically) --- */
 
         @media (max-width: 768px) {
             .bento-grid-container {
-                /* Stacked Vertically */
                 grid-template-columns: 1fr;
             }
 
-            /* Resetting all desktop spans to stack on mobile */
             .card-profile,
             .card-tech-stack,
             .card-playlist {
@@ -177,17 +205,9 @@
                 grid-row: span 1;
             }
             
-            /* Adjustments for smaller screen look */
-            .card-profile h1 {
-                font-size: 2em;
-            }
-
-            .card-location .time {
-                font-size: 2em;
-            }
-            
-            .card-content h2 {
-                font-size: 1.3em;
+            /* Restore padding for playlist card on mobile since it stacks */
+            .card-playlist {
+                padding: var(--spacing);
             }
         }
     </style>
@@ -204,9 +224,9 @@
                 <p><strong>Tagline:</strong> 'plants for all.'</p>
             </div>
             <div class="social-links">
-                <a href="#">LinkedIn</a>
-                <a href="#">GitHub</a>
-                <a href="#">UMT Portal</a>
+                <a href="#" target="_blank">LinkedIn</a>
+                <a href="#" target="_blank">GitHub</a>
+                <a href="#" target="_blank">UMT Portal</a>
             </div>
         </div>
 
@@ -215,7 +235,7 @@
                 <div class="card-title">Current Location</div>
                 <div class="card-content">
                     <h2>UMT, Kuala Nerus</h2>
-                    <div class="time">10:46 AM</div> 
+                    <div class="time">12:39 PM</div> 
                 </div>
             </div>
         </div>
@@ -227,6 +247,22 @@
                     <h2>Coastal Relaxation</h2>
                     <p>Evening walks at Pantai UMT.</p>
                 </div>
+            </div>
+        </div>
+        
+        <div class="card card-reflection">
+            <div class="card-title">Reflection / Perspective</div>
+            <div class="card-content">
+                <h2>Why Food Tech Matters in Malaysia</h2>
+                <p>Sustainable food security is crucial for our future. By optimizing local processing methods, we can reduce waste and improve nutrition.</p>
+            </div>
+        </div>
+
+        <div class="card card-case-study">
+            <div class="card-title">Recent Lab Work</div>
+            <div class="card-content">
+                <h2>Soil Horizon</h2>
+                <p>Analyzing texture profiles of Soil — View Report</p>
             </div>
         </div>
 
@@ -244,20 +280,8 @@
             </div>
         </div>
 
-        <div class="card card-case-study">
-            <div class="card-title">Recent Lab Work</div>
-            <div class="card-content">
-                <h2>Soil Horizon</h2>
-                <p>Analyzing texture profiles of Soil — View Report</p>
-            </div>
-        </div>
-
         <div class="card card-playlist">
-            <div class="card-title">Study Focus</div>
-            <div class="card-content">
-                <h2>Lofi Beats for Deep Work</h2>
-                <p>Placeholder for Embedded Music Player / Spotify Widget.</p>
-            </div>
+            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/13KXgSl4vs7h8y2G7V6GrB?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
     </div>
 
