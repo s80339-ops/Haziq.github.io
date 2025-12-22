@@ -8,7 +8,7 @@
     
     <style>
         :root {
-            /* Clean, Scientific, and Modern Color Palette */
+            /* 4. Clean, Scientific, and Modern Color Palette */
             --color-background: #F8F9FA;
             --color-card-bg: #FFFFFF;
             --color-text-primary: #212529;
@@ -17,7 +17,7 @@
             --color-border: #E9ECEF;
             --border-radius: 12px;
             --spacing: 16px;
-            --color-timer-btn: #ffb7b2;  /* Focus App Accent Color */
+            --color-btn-focus: #ffb7b2;  /* Match Focus Timer Theme */
         }
 
         body {
@@ -53,7 +53,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            position: relative;
+            position: relative; 
             transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
         }
 
@@ -71,8 +71,8 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            color: white;
-            overflow: hidden;
+            color: white; 
+            overflow: hidden; 
         }
         
         .card-tech-stack {
@@ -81,8 +81,8 @@
         
         .card-playlist {
             grid-column: span 3;
-            padding: 0;
-            overflow: hidden;
+            padding: 0; 
+            overflow: hidden; 
         }
         
         .card-playlist iframe {
@@ -101,7 +101,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.4); 
             border-radius: var(--border-radius);
             z-index: 1; 
         }
@@ -119,14 +119,14 @@
         }
 
         .card-profile .program {
-            color: #ccc;
+            color: #ccc; 
             font-weight: 600;
             font-size: 1.1em;
             margin-bottom: 20px;
         }
         
         .card-profile .social-links a {
-            color: #fff;
+            color: #fff; 
             text-decoration: none;
             margin-right: 15px;
             font-weight: 500;
@@ -134,7 +134,7 @@
         }
 
         .card-profile .social-links a:hover {
-            color: #00bfff;
+            color: #00bfff; 
         }
 
         .card-title {
@@ -165,23 +165,22 @@
             margin-bottom: 15px;
         }
 
-        /* Focus Timer Button Style */
-        .btn-timer {
+        /* Button Styling */
+        .btn-focus-app {
             display: inline-block;
-            background-color: var(--color-timer-btn);
+            background-color: var(--color-btn-focus);
             color: #5d576b;
             text-decoration: none;
-            padding: 10px 18px;
+            padding: 10px 20px;
             border-radius: 8px;
             font-weight: 700;
             font-size: 0.9em;
             transition: all 0.3s ease;
             text-align: center;
             border: 1px solid rgba(0,0,0,0.05);
-            margin-top: 5px;
         }
 
-        .btn-timer:hover {
+        .btn-focus-app:hover {
             background-color: #ff9aa2;
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(255, 183, 178, 0.4);
@@ -278,7 +277,7 @@
             <div class="card-content">
                 <h2>Soil Horizon</h2>
                 <p>Analyzing texture profiles of Soil — View Report</p>
-                <a href="https://s80339-ops.github.io/focus-timer-app/app.html" class="btn-timer" target="_blank">Try My Focus Timer App 🦊</a>
+                <a href="https://s80339-ops.github.io/focus-timer-app/app.html" class="btn-focus-app" target="_blank">Try My Focus Timer App 🦊</a>
             </div>
         </div>
 
