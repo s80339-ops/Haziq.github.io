@@ -8,7 +8,7 @@
     
     <style>
         :root {
-            /* 4. Clean, Scientific, and Modern Color Palette */
+            /* Clean, Scientific, and Modern Color Palette */
             --color-background: #F8F9FA;
             --color-card-bg: #FFFFFF;
             --color-text-primary: #212529;
@@ -17,6 +17,7 @@
             --color-border: #E9ECEF;
             --border-radius: 12px;
             --spacing: 16px;
+            --color-timer-btn: #ffb7b2;  /* Focus App Accent Color */
         }
 
         body {
@@ -52,7 +53,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            position: relative; /* Penting untuk overlay dan z-index */
+            position: relative;
             transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
         }
 
@@ -66,24 +67,22 @@
         .card-profile {
             grid-column: span 2;
             grid-row: span 2;
-            /* Latar Belakang Gambar Profil */
             background-image: url('bg.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            color: white; /* Default text color in this card */
-            overflow: hidden; /* Penting untuk overlay */
+            color: white;
+            overflow: hidden;
         }
         
         .card-tech-stack {
             grid-column: span 2;
         }
         
-        /* Playlist Card Specific: Remove padding to let the iframe fill the space */
         .card-playlist {
             grid-column: span 3;
-            padding: 0; /* Remove internal padding to contain the full iframe */
-            overflow: hidden; /* Ensure iframe corners match card border radius */
+            padding: 0;
+            overflow: hidden;
         }
         
         .card-playlist iframe {
@@ -95,7 +94,6 @@
 
         /* --- Content Styling --- */
 
-        /* Profile Card Overlay for Contrast */
         .card-profile::before {
             content: "";
             position: absolute;
@@ -103,18 +101,16 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4); /* Black overlay 40% opacity */
+            background: rgba(0, 0, 0, 0.4);
             border-radius: var(--border-radius);
             z-index: 1; 
         }
 
-        /* Ensure all text content is above the overlay */
         .card-profile > div {
             position: relative;
             z-index: 2;
         }
         
-        /* Text styling for Profile Card (Light colors) */
         .card-profile h1 {
             font-size: 2.5em;
             margin-top: 0;
@@ -123,14 +119,14 @@
         }
 
         .card-profile .program {
-            color: #ccc; /* Light gray for contrast */
+            color: #ccc;
             font-weight: 600;
             font-size: 1.1em;
             margin-bottom: 20px;
         }
         
         .card-profile .social-links a {
-            color: #fff; /* White for links */
+            color: #fff;
             text-decoration: none;
             margin-right: 15px;
             font-weight: 500;
@@ -138,10 +134,9 @@
         }
 
         .card-profile .social-links a:hover {
-            color: #00bfff; /* Lighter blue accent on hover */
+            color: #00bfff;
         }
 
-        /* Standard Card Styling (for non-profile cards) */
         .card-title {
             font-size: 0.9em;
             color: var(--color-text-secondary);
@@ -167,6 +162,29 @@
             color: var(--color-accent);
             font-weight: 600;
             font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        /* Focus Timer Button Style */
+        .btn-timer {
+            display: inline-block;
+            background-color: var(--color-timer-btn);
+            color: #5d576b;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.05);
+            margin-top: 5px;
+        }
+
+        .btn-timer:hover {
+            background-color: #ff9aa2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 183, 178, 0.4);
         }
 
         .card-location .time {
@@ -191,8 +209,6 @@
             font-weight: 500;
         }
 
-        /* --- Mobile Responsiveness (Stacked Vertically) --- */
-
         @media (max-width: 768px) {
             .bento-grid-container {
                 grid-template-columns: 1fr;
@@ -205,7 +221,6 @@
                 grid-row: span 1;
             }
             
-            /* Restore padding for playlist card on mobile since it stacks */
             .card-playlist {
                 padding: var(--spacing);
             }
@@ -259,10 +274,11 @@
         </div>
 
         <div class="card card-case-study">
-            <div class="card-title">Recent Lab Work</div>
+            <div class="card-title">Recent Lab Work / Apps</div>
             <div class="card-content">
                 <h2>Soil Horizon</h2>
                 <p>Analyzing texture profiles of Soil — View Report</p>
+                <a href="https://s80339-ops.github.io/focus-timer-app/app.html" class="btn-timer" target="_blank">Try My Focus Timer App 🦊</a>
             </div>
         </div>
 
